@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { FoodRestriction } from "./FoodRestriction"
 
 @Entity()
 export class User {
@@ -11,5 +12,8 @@ export class User {
 
   @Column()
   email!: string
+
+  @OneToMany(() => FoodRestriction, foodRestrictions => foodRestrictions.user)
+  public foodRestrictions: FoodRestriction[]
 
 }
